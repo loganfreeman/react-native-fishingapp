@@ -12,12 +12,17 @@ Discover Movies and TV shows
 | [React Native](http://facebook.github.io/react-native/releases/0.32/) |  Build Native Mobile Apps using JavaScript and React. |
 | [React Native Navigation](https://github.com/wix/react-native-navigation) | App-wide support for 100% native navigation with an easy cross-platform interface. |
 | [Redux](https://nodejs.org/) | Predictable state container for JavaScript apps.  |
-| [Redux Thunk](https://github.com/gaearon/redux-thunk) | Thunk middleware for Redux | 
+| [Redux Thunk](https://github.com/gaearon/redux-thunk) | Thunk middleware for Redux |
 | [ESLint](http://eslint.org/) | The pluggable linting utility for JavaScript and JSX |
 
 ### Requirements
 - [Node](https://nodejs.org/) >= 5.0.0
 - [npm](https://npmjs.com) >= 3
+
+### How to run
+```
+react-native run-android
+```
 
 ### Installation
 
