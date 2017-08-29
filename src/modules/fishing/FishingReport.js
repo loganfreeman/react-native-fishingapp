@@ -5,7 +5,7 @@ import {
 	ListView,
 	Text,
 	ScrollView,
-	RefreshControl
+	Alert
 } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -18,6 +18,20 @@ import { Card, ListItem, Button } from 'react-native-elements';
 import StarRating from 'react-native-star-rating';
 
 class FishingReport extends Component {
+
+	static navigatorButtons = {
+    rightButtons: [
+      {
+        icon: require('../../img/find.png'), // for icon button, provide the local image asset name
+        id: 'search' // id for this button, given in onNavigatorEvent(event) to help understand which button was clicked
+      },
+			{
+				icon: require('../../img/filter.png'), // for icon button, provide the local image asset name
+				id: 'status' // id for this button, given in onNavigatorEvent(event) to help understand which button was clicked
+			}
+    ]
+  };
+
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -54,6 +68,12 @@ class FishingReport extends Component {
 			if (event.id === 'close') {
 				this.props.navigator.dismissModal();
 			}
+			if (event.id == 'search') { // this is the same id field from the static navigatorButtons definition
+        Alert.alert('NavBar', 'Search button pressed');
+      }
+      if (event.id == 'status') {
+        Alert.alert('NavBar', 'Status button pressed');
+      }
 		}
 	}
 
