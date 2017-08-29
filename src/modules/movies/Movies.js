@@ -208,6 +208,27 @@ Movies.propTypes = {
 	navigator: PropTypes.object
 };
 
+let navigatorStyle = {};
+
+if (Platform.OS === 'ios') {
+	navigatorStyle = {
+		navBarTranslucent: true,
+		drawUnderNavBar: true
+	};
+} else {
+	navigatorStyle = {
+		navBarBackgroundColor: '#0a0a0a'
+	};
+}
+
+Movies.navigatorStyle = {
+	...navigatorStyle,
+	statusBarColor: 'black',
+	statusBarTextColorScheme: 'light',
+	navBarTextColor: 'white',
+	navBarButtonColor: 'white'
+};
+
 function mapStateToProps(state, ownProps) {
 	return {
 		nowPlayingMovies: state.movies.nowPlayingMovies,

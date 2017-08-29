@@ -31,7 +31,7 @@ class Drawer extends Component {
 
 	_goToMovies() {
 		this._toggleDrawer();
-		this.props.navigator.resetTo({
+		this.props.navigator.showModal({
 			screen: 'movieapp.Movies',
 			title: 'Movies',
 			animated: true, // does the resetTo have transition animation or does it happen immediately (optional)
@@ -62,7 +62,7 @@ class Drawer extends Component {
 
 	_gotoFishing() {
 		this._toggleDrawer();
-		this.props.navigator.resetTo({
+		this.props.navigator.popToRoot({
 			screen: 'movieapp.FishingReport',
 			title: 'Fishing Report',
 			animated: true, // does the resetTo have transition animation or does it happen immediately (optional)

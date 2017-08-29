@@ -13,8 +13,8 @@ function getRating(status) {
     "Closed": 0,
     "No recent report": 0
   }
-  return Array.from(new Array(ratings[status]), (x,i) => i)
-  //return ratings[status];
+  // return Array.from(new Array(ratings[status]), (x,i) => i)
+  return ratings[status];
 }
 
 function findTextAndReturnRemainder(target, variable) {
