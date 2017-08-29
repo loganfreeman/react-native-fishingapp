@@ -48,16 +48,7 @@ class Drawer extends Component {
 	}
 
 	_gotoRun() {
-		Alert.alert(
-		  'Alert Title',
-		  'My Alert Msg',
-		  [
-		    {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
-		    {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-		    {text: 'OK', onPress: () => console.log('OK Pressed')},
-		  ],
-		  { cancelable: false }
-		)
+
 	}
 
 	_gotoFishing() {
@@ -96,7 +87,7 @@ class Drawer extends Component {
 								</Text>
 							</View>
 						</TouchableOpacity>
-						<TouchableOpacity onPress={this._gotoRun}>
+						<TouchableOpacity onPress={() => ToastAndroid.show('Coming Soon!', ToastAndroid.SHORT)}>
 							<View style={styles.drawerListItem}>
 								{iconRun}
 								<Text style={styles.drawerListItemText}>

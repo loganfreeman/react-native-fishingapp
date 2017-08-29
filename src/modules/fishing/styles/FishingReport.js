@@ -21,7 +21,13 @@ const styles = StyleSheet.create({
 
   title: {
 
-  }
+  },
+  progressBar: {
+		backgroundColor: '#0a0a0a',
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center'
+	},
 
 
 });
