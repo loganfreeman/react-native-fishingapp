@@ -3,9 +3,9 @@ import {
 	Platform,
 	View,
 	ListView,
+	Text,
 	RefreshControl
 } from 'react-native';
-import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -34,18 +34,19 @@ class FishingReport extends Component {
 			.then(() => {
 				const ds = new ListView.DataSource({ rowHasChanged: (row1, row2) => row1 !== row2 });
 				const dataSource = ds.cloneWithRows(this.props.waterbodies);
-				this.setState({
+				let state = {
 					waterbodies: this.props.waterbodies,
 					dataSource,
-					isLoading: false
-				});
+					isLoading: false,
+					isRefreshing: false
+				};
+				this.setState(state);
 			});
-		if (isRefreshed && this.setState({ isRefreshing: false }));
 	}
 
 	_onRefresh() {
 		this.setState({ isRefreshing: true });
-		this._retrieveFishingReport(true);
+		this._retrieveFishingReport();
 	}
 
 	_onNavigatorEvent(event) {
@@ -81,33 +82,19 @@ class FishingReport extends Component {
 		)
 	}
 }
-
+FishingReport.navigatorStyle = {
+	navBarTransparent: true,
+	drawUnderNavBar: true,
+	navBarTranslucent: true,
+	statusBarHidden: true,
+	navBarTextColor: 'white',
+	navBarButtonColor: 'white'
+};
 
 FishingReport.propTypes = {
 	actions: PropTypes.object.isRequired,
-	waterbodies: PropTypes.object.isRequired,
+	waterbodies: PropTypes.array.isRequired,
 	navigator: PropTypes.object
-};
-
-let navigatorStyle = {};
-
-if (Platform.OS === 'ios') {
-	navigatorStyle = {
-		navBarTranslucent: true,
-		drawUnderNavBar: true
-	};
-} else {
-	navigatorStyle = {
-		navBarBackgroundColor: '#0a0a0a'
-	};
-}
-
-FishingReport.navigatorStyle = {
-	...navigatorStyle,
-	statusBarColor: 'black',
-	statusBarTextColorScheme: 'light',
-	navBarTextColor: 'white',
-	navBarButtonColor: 'white'
 };
 
 function mapStateToProps(state, ownProps) {

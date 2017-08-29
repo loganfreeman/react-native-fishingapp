@@ -31,8 +31,11 @@ class Drawer extends Component {
 
 	_goToMovies() {
 		this._toggleDrawer();
-		this.props.navigator.popToRoot({
-			screen: 'movieapp.Movies'
+		this.props.navigator.resetTo({
+			screen: 'movieapp.Movies',
+			title: 'Movies',
+			animated: true, // does the resetTo have transition animation or does it happen immediately (optional)
+  		animationType: 'fade'
 		});
 	}
 
@@ -59,8 +62,11 @@ class Drawer extends Component {
 
 	_gotoFishing() {
 		this._toggleDrawer();
-		this.props.navigator.popToRoot({
-			screen: 'movieapp.FishingReport'
+		this.props.navigator.resetTo({
+			screen: 'movieapp.FishingReport',
+			title: 'Fishing Report',
+			animated: true, // does the resetTo have transition animation or does it happen immediately (optional)
+  		animationType: 'fade'
 		});
 	}
 
