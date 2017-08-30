@@ -124,6 +124,7 @@ class Movies extends Component {
 		const iconPlay = <Icon name="md-play" size={21} color="#9F9F9F" style={{ paddingLeft: 3, width: 22 }} />;
 		const iconTop = <Icon name="md-trending-up" size={21} color="#9F9F9F" style={{ width: 22 }} />;
 		const iconUp = <Icon name="md-recording" size={21} color="#9F9F9F" style={{ width: 22 }} />;
+		const iconPopular = <Icon name="md-heart" size={21} color="#9F9F9F" style={{ width: 22 }} />;
 
 		return (
 			this.state.isLoading ? <View style={styles.progressBar}><ProgressBar /></View> :
@@ -181,6 +182,16 @@ class Movies extends Component {
 								{iconTop}
 								<Text style={styles.browseListItemText} onPress={this._viewMoviesList.bind(this, 'top_rated', 'Top Rated')}>
 									Top Rated
+								</Text>
+							</View>
+						</TouchableOpacity>
+						<TouchableOpacity activeOpacity={0.7}>
+							<View style={styles.browseListItem}>
+								{iconPopular}
+								<Text
+									style={styles.browseListItemText}
+									onPress={this._viewMoviesList.bind(this, 'popular', 'Popular')}>
+									Popular
 								</Text>
 							</View>
 						</TouchableOpacity>
