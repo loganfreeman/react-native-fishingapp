@@ -8,6 +8,7 @@ export default {
 		searchResults: {}
 	},
 	fishing: {
-		waterbodies: []
+		waterbodies: [],
+		detail: {}
 	}
 };

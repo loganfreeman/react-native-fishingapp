@@ -67,25 +67,16 @@ class WaterBody extends Component {
 
     return (
       this.state.isLoading ? <View style={styles.progressBar}><ProgressBar /></View> :
-      <View style={styles.container}>
-        <View style={styles.cardContainer}>
-          <View style={styles.cardDetails}>
-            <Text style={styles.cardTitle}>{water.title}</Text>
-          </View>
-        </View>
-      </View>
+			<Card title={water.title}>
+				<Text>{detail.summary}</Text>
+			</Card>
     );
   }
 
 }
 
 WaterBody.navigatorStyle = {
-	navBarTransparent: true,
-	drawUnderNavBar: true,
-	navBarTranslucent: true,
-	statusBarHidden: true,
-	navBarTextColor: 'white',
-	navBarButtonColor: 'white'
+
 };
 
 WaterBody.propTypes = {
