@@ -247,6 +247,24 @@ class FishingReport extends Component {
 		this._retrieveFishingReport();
 	}
 
+	_onWaterbodySelect(water) {
+		this.props.navigator.showModal({
+			screen: 'movieapp.WaterBody',
+			passProps: {
+				water
+			},
+			backButtonHidden: true,
+			navigatorButtons: {
+				rightButtons: [
+					{
+						id: 'close',
+						icon: iconsMap['ios-arrow-round-down']
+					}
+				]
+			}
+		});
+	}
+
 	_onNavigatorEvent(event) {
 		if (event.type === 'NavBarButtonPress') {
 			if (event.id === 'close') {
@@ -306,6 +324,7 @@ class FishingReport extends Component {
 								 title={u.title}
 								 subtitle={subtitle}
 								 hideChevron={true}
+								 onPress={this._onWaterbodySelect.bind(this, u)}
 								 />
 							 );
 						 })

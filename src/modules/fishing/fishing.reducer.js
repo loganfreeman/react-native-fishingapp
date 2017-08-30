@@ -10,6 +10,12 @@ export default function (state = initialState.fishing, action) {
 				waterbodies: action.waterbodies
 			};
 
+		case types.RETRIEVE_WATERBODY_SUCCESS:
+			return {
+				...state,
+				detail: action.detail
+			};
+			
 		default:
 			return state;
 	}

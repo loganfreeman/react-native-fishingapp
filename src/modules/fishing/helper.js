@@ -52,11 +52,27 @@ function getWaterBody(text,waterbodies = []) {
   return waterbodies;
 }
 
-export default function extractFishingReport(html) {
+export function extractFishingReport(html) {
   let $ = cheerio.load(html);
   let waterbodies = [];
   $('script').each((index, element) => {
     getWaterBody($(element).html(), waterbodies);
   });
   return waterbodies;
+}
+
+export function extractWaterbody(html) {
+  let $ = cheerio.load(html);
+  let summary = $(".full-article h4 + p").text();
+  let details = $(".full-article ul").text();
+  let obj = {
+    summary: summary,
+    details: details
+  }
+  $(".full-article ul li").each((index, element) => {
+    let entry = $(element).text().split(":");
+    obj[entry[0].replace(" ", "_")] = entry[1].trim();
+  });
+
+  return obj;
 }
