@@ -67,16 +67,36 @@ class WaterBody extends Component {
 
     return (
       this.state.isLoading ? <View style={styles.progressBar}><ProgressBar /></View> :
-			<Card title={water.title}>
-				<Text>{detail.summary}</Text>
-			</Card>
+			<ScrollView style={styles.container}>
+				<Card title={water.title}>
+						<Text>{detail.summary}</Text>
+				</Card>
+			</ScrollView>
+
     );
   }
 
 }
 
-WaterBody.navigatorStyle = {
+let navigatorStyle = {};
 
+if (Platform.OS === 'ios') {
+	navigatorStyle = {
+		navBarTranslucent: true,
+		drawUnderNavBar: true
+	};
+} else {
+	navigatorStyle = {
+		navBarBackgroundColor: '#0a0a0a'
+	};
+}
+
+WaterBody.navigatorStyle = {
+	...navigatorStyle,
+	statusBarColor: 'black',
+	statusBarTextColorScheme: 'light',
+	navBarTextColor: 'white',
+	navBarButtonColor: 'white'
 };
 
 WaterBody.propTypes = {

@@ -250,6 +250,7 @@ class FishingReport extends Component {
 	_onWaterbodySelect(water) {
 		this.props.navigator.showModal({
 			screen: 'movieapp.WaterBody',
+			title: water.title,
 			passProps: {
 				water
 			},
