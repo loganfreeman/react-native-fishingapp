@@ -103,6 +103,14 @@ class FishingReport extends Component {
 				visibleModal: null
 			});
 		}
+
+		function clear() {
+			this.setState({
+				keyword: null,
+				waterbodies: this.props.waterbodies,
+				visibleModal: null
+			});
+		}
 		return (
 			<View style={styles.modalContent}>
 				<View style={{marginTop: 10, padding: 20, backgroundColor: 'white'}}>
@@ -111,6 +119,7 @@ class FishingReport extends Component {
 					  onChangeText={onChangeText.bind(this)}
 					  placeholder='Type Here...' />
 	      </View>
+				{this._renderButton('Clear Search Results', clear.bind(this))}
 				{this._renderButton('Close', search.bind(this))}
 			</View>
 		);
