@@ -24,6 +24,9 @@ Discover Movies and TV shows
 react-native run-android
 ```
 
+### How to generate signed APK
+[signed-apk-android](https://facebook.github.io/react-native/docs/signed-apk-android.html)
+
 ### Installation
 
 Clone this repo
