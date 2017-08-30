@@ -49,7 +49,7 @@ class Weather extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.detail) this.setState({ isLoading: false });
+    if (nextProps.weather) this.setState({ isLoading: false });
   }
 
 
