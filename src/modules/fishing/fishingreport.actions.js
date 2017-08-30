@@ -53,7 +53,7 @@ export function retrieveWeatherSuccess(weather) {
 }
 
 export function retrieveWeather(latitude, longitude) {
-	let url = `${darkSkyAPIKey}/${darkSkyAPIKey}/${latitude},${longitude}`;
+	let url = `${darkSkyAPIURL}/${darkSkyAPIKey}/${latitude},${longitude}`;
 	return function (dispatch) {
 		return axios.get(url)
 		.then(res => {

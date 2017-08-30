@@ -32,11 +32,12 @@ class Weather extends Component {
 	}
 
   componentWillMount() {
-
+		this._retrieveWeather();
   }
 
 	_retrieveWeather() {
 		const { water } = this.props;
+		this.props.actions.retrieveWeather(water.latitude, water.longitude);
 	}
 
   _onNavigatorEvent(event) {
@@ -56,8 +57,11 @@ class Weather extends Component {
     const { water } = this.props;
 
     return (
+			this.state.isLoading ? <View style={styles.progressBar}><ProgressBar /></View> :
 			<ScrollView style={styles.container}>
 				<Card title={water.title}>
+					<Text>{water.latitude}</Text>
+					<Text>{water.longitude}</Text>
 				</Card>
 			</ScrollView>
 
@@ -90,12 +94,13 @@ Weather.navigatorStyle = {
 Weather.propTypes = {
   actions: PropTypes.object.isRequired,
 	navigator: PropTypes.object,
-	water: PropTypes.object.isRequired
+	water: PropTypes.object.isRequired,
+	weather: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
 	return {
-		water: state.fishing.water
+		weather: state.fishing.weather
 	};
 }
 
