@@ -15,7 +15,13 @@ export default function (state = initialState.fishing, action) {
 				...state,
 				detail: action.detail
 			};
-			
+
+		case types.RETRIEVE_WEATHER_SUCCESS:
+			return {
+				...state,
+				weather: action.weather
+			};
+
 		default:
 			return state;
 	}
