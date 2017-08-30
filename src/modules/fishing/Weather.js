@@ -17,7 +17,7 @@ import ProgressBar from '../_global/ProgressBar';
 import styles from './styles/Weather';
 import { iconsMap } from '../../utils/AppIcons';
 import Icon from 'react-native-vector-icons/Ionicons';
-
+import { Card, Button } from 'react-native-elements';
 
 
 class Weather extends Component {
@@ -35,6 +35,10 @@ class Weather extends Component {
 
   }
 
+	_retrieveWeather() {
+		const { water } = this.props;
+	}
+
   _onNavigatorEvent(event) {
     if (event.type === 'NavBarButtonPress') {
       if (event.id === 'close') {
@@ -49,11 +53,12 @@ class Weather extends Component {
 
 
   render() {
-    const { latitude, longitude } = this.props;
+    const { water } = this.props;
 
     return (
 			<ScrollView style={styles.container}>
-        
+				<Card title={water.title}>
+				</Card>
 			</ScrollView>
 
     );
@@ -85,13 +90,12 @@ Weather.navigatorStyle = {
 Weather.propTypes = {
   actions: PropTypes.object.isRequired,
 	navigator: PropTypes.object,
-	latitude: PropTypes.number.isRequired,
-  longitude: PropTypes.number.isRequired
+	water: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
 	return {
-		weather: state.fishing.weather
+		water: state.fishing.water
 	};
 }
 

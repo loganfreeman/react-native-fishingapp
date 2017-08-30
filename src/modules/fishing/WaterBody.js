@@ -65,7 +65,23 @@ class WaterBody extends Component {
 	}
 
 	_showWeather() {
-
+		const { water } = this.props;
+		this.props.navigator.showModal({
+			screen: 'movieapp.Weather',
+			title: water.title,
+			passProps: {
+				water
+			},
+			backButtonHidden: true,
+			navigatorButtons: {
+				rightButtons: [
+					{
+						id: 'close',
+						icon: iconsMap['ios-arrow-round-down']
+					}
+				]
+			}
+		});
 	}
 
   render() {

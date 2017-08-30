@@ -8,6 +8,7 @@ import Movie from './modules/movies/Movie';
 import Search from './modules/movies/Search';
 import FishingReport from './modules/fishing/FishingReport';
 import WaterBody from './modules/fishing/WaterBody';
+import Weather from './modules/fishing/Weather';
 
 export function registerScreens(store, Provider) {
 	Navigation.registerComponent('movieapp.Movie', () => Movie, store, Provider);
@@ -17,4 +18,5 @@ export function registerScreens(store, Provider) {
 	Navigation.registerComponent('movieapp.Drawer', () => Drawer);
 	Navigation.registerComponent('movieapp.FishingReport', () => FishingReport, store, Provider);
 	Navigation.registerComponent('movieapp.WaterBody', () => WaterBody, store, Provider);
+	Navigation.registerComponent('movieapp.Weather', () => Weather, store, Provider);
 }
