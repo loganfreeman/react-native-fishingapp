@@ -1,5 +1,5 @@
 import * as types from '../../constants/actionTypes';
-import { FISHING_REPORT_URL, darkSkyAPIKey } from '../../constants/api';
+import { FISHING_REPORT_URL } from '../../constants/api';
 import { extractFishingReport, extractWaterbody } from './helper';
 import axios from 'axios';
 
