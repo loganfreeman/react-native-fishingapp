@@ -16,7 +16,7 @@ import * as fishingReportActions from './fishingreport.actions';
 import ProgressBar from '../_global/ProgressBar';
 import styles from './styles/FishingReport';
 import { iconsMap } from '../../utils/AppIcons';
-import { Card, List, ListItem, Button, CheckBox } from 'react-native-elements';
+import { Card, List, ListItem, Button, CheckBox, SearchBar } from 'react-native-elements';
 import StarRating from 'react-native-star-rating';
 import Modal from 'react-native-modal';
 import { RadioButtons } from 'react-native-radio-buttons'
@@ -71,9 +71,50 @@ class FishingReport extends Component {
     </TouchableOpacity>
   );
 
-	_onStatusListItemPress(status) {
-		this.status = status;
+	_setKeyword(keyword) {
+
 	}
+
+	_renderSearchModal = () => {
+		function onChangeText(keyword) {
+			this.setState({
+				keyword
+			})
+		}
+
+		function search() {
+			let waterbodies;
+			if(!this.state.keyword || !this.state.keyword.trim()) {
+				waterbodies = this.props.waterbodies;
+			}else {
+				let reg;
+				try {
+					reg = new RegExp(this.state.keyword, 'i');
+					waterbodies = this.props.waterbodies.filter(item => {
+						return item.title.match(reg);
+					})
+				}catch(e) {
+					waterbodies = this.props.waterbodies;
+				}
+			}
+
+			this.setState({
+				waterbodies: waterbodies,
+				visibleModal: null
+			});
+		}
+		return (
+			<View style={styles.modalContent}>
+				<View style={{marginTop: 10, padding: 20, backgroundColor: 'white'}}>
+					<SearchBar
+						lightTheme
+					  onChangeText={onChangeText.bind(this)}
+					  placeholder='Type Here...' />
+	      </View>
+				{this._renderButton('Close', search.bind(this))}
+			</View>
+		);
+	};
 
   _renderModalContent = () => {
 
@@ -200,13 +241,13 @@ class FishingReport extends Component {
 			if (event.id === 'close') {
 				this.props.navigator.dismissModal();
 			}
-			if (event.id == 'search') { // this is the same id field from the static navigatorButtons definition
+			if (event.id == 'status') { // this is the same id field from the static navigatorButtons definition
         //Alert.alert('NavBar', 'Search button pressed');
 			  this.setState({
 					visibleModal: 1
 				});
       }
-      if (event.id == 'status') {
+      if (event.id == 'search') {
         //Alert.alert('NavBar', 'Status button pressed');
 				this.setState({
 					visibleModal: 2
@@ -222,43 +263,8 @@ class FishingReport extends Component {
 				<Modal isVisible={this.state.visibleModal === 1}>
 					{this._renderModalContent()}
 				</Modal>
-				<Modal
-					isVisible={this.state.visibleModal === 2}
-					animationIn={'slideInLeft'}
-					animationOut={'slideOutRight'}
-				>
-					{this._renderModalContent()}
-				</Modal>
-				<Modal
-					isVisible={this.state.visibleModal === 3}
-					animationInTiming={2000}
-					animationOutTiming={2000}
-					backdropTransitionInTiming={2000}
-					backdropTransitionOutTiming={2000}
-				>
-					{this._renderModalContent()}
-				</Modal>
-				<Modal
-					isVisible={this.state.visibleModal === 4}
-					backdropColor={'red'}
-					backdropOpacity={1}
-					animationIn={'zoomInDown'}
-					animationOut={'zoomOutUp'}
-					animationInTiming={1000}
-					animationOutTiming={1000}
-					backdropTransitionInTiming={1000}
-					backdropTransitionOutTiming={1000}
-				>
-					{this._renderModalContent()}
-				</Modal>
-				<Modal isVisible={this.state.visibleModal === 5} style={styles.bottomModal}>
-					{this._renderModalContent()}
-				</Modal>
-				<Modal
-					isVisible={this.state.visibleModal === 6}
-					onBackdropPress={() => this.setState({ visibleModal: null })}
-				>
-					{this._renderModalContent()}
+				<Modal isVisible={this.state.visibleModal === 2}>
+					{this._renderSearchModal()}
 				</Modal>
 				<ScrollView>
 					<Card containerStyle={{padding: 0}}>
