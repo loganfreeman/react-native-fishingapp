@@ -16,10 +16,12 @@ import * as fishingReportActions from './fishingreport.actions';
 import ProgressBar from '../_global/ProgressBar';
 import styles from './styles/FishingReport';
 import { iconsMap } from '../../utils/AppIcons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { Card, List, ListItem, Button, CheckBox, SearchBar } from 'react-native-elements';
 import StarRating from 'react-native-star-rating';
 import Modal from 'react-native-modal';
 import { RadioButtons } from 'react-native-radio-buttons'
+import { range } from 'lodash';
 
 const options = [
 	"All",
@@ -266,6 +268,7 @@ class FishingReport extends Component {
 	}
 
 	render() {
+		const iconStar = <Icon name="md-star" size={16} color="#F5B642" />;
 		return (
 			this.state.isLoading ? <View style={styles.progressBar}><ProgressBar /></View> :
 			<View>
@@ -275,23 +278,25 @@ class FishingReport extends Component {
 				<Modal isVisible={this.state.visibleModal === 2}>
 					{this._renderSearchModal()}
 				</Modal>
-				<ScrollView>
-					<Card containerStyle={{padding: 0}}>
+				<ScrollView style={{marginBottom: 25}}>
+					<Card containerStyle={{padding: 25, marginBottom: 50}} titleStyle={{display: 'none'}}>
 					 {
 						 this.state.waterbodies.map((u, i) => {
 							 let status = (
-								 <View style={{width: 50}}>
-								 <StarRating
-					         disabled={true}
-					         maxStars={5}
-					         rating={u.rating}
-					       />
+								 <View style={{flex: 1, flexDirection: 'row'}}>
+								 {
+									 range(u.rating).map((e, i) => {
+										 return (
+											 <Icon name="md-star" size={24} color="#F5B642" key={i}/>
+										 );
+									 })
+								 }
 								 </View>
 							 );
 							 let subtitle = (
-								 <View style={{flexDirection:'column'}}>
-								 	<Text style={{flex: 1, flexWrap: 'wrap'}}>{u.kind}</Text>
-									{status}
+								 <View style={{flex: 1, flexDirection:'column'}}>
+								 	{status}
+									<Text style={{flex: 1, flexWrap: 'wrap'}}>{u.kind}</Text>
 								 </View>
 							 );
 
