@@ -17,12 +17,9 @@ import ProgressBar from '../_global/ProgressBar';
 import styles from './styles/WaterBody';
 import { iconsMap } from '../../utils/AppIcons';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { Card, List, ListItem, Button, CheckBox, SearchBar } from 'react-native-elements';
-import StarRating from 'react-native-star-rating';
-import Modal from 'react-native-modal';
-import { RadioButtons } from 'react-native-radio-buttons'
+import { Card, Button } from 'react-native-elements';
 import { range } from 'lodash';
-
+import openMap from 'react-native-open-maps';
 
 class WaterBody extends Component {
   constructor(props) {
@@ -62,6 +59,15 @@ class WaterBody extends Component {
     this._retrieveDetails('isRefreshed');
   }
 
+	_navigate() {
+		const { water } = this.props;
+		openMap({ latitude: water.latitude, longitude: water.longitude });
+	}
+
+	_showWeather() {
+
+	}
+
   render() {
     const { detail, water } = this.props;
 
@@ -70,6 +76,20 @@ class WaterBody extends Component {
 			<ScrollView style={styles.container}>
 				<Card title={water.title}>
 						<Text>{detail.summary}</Text>
+
+						<Text>{detail.details}</Text>
+
+						<View style={{flex: 1, flexDirection: 'row'}}>
+							<Button
+								onPress={this._navigate.bind(this)}
+							  icon={{name: 'map', type: 'font-awesome'}}
+							  title='Get there' />
+
+								<Button
+									onPress={this._showWeather.bind(this)}
+								  icon={{name: 'tint', type: 'font-awesome'}}
+								  title='Show weather' />
+						</View>
 				</Card>
 			</ScrollView>
 
