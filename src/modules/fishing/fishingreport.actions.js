@@ -1,5 +1,5 @@
 import * as types from '../../constants/actionTypes';
-import { FISHING_REPORT_URL } from '../../constants/api';
+import { FISHING_REPORT_URL, darkSkyAPIURL, darkSkyAPIKey } from '../../constants/api';
 import { extractFishingReport, extractWaterbody } from './helper';
 import axios from 'axios';
 
@@ -53,10 +53,11 @@ export function retrieveWeatherSuccess(weather) {
 }
 
 export function retrieveWeather(latitude, longitude) {
+	let url = `${darkSkyAPIKey}/${darkSkyAPIKey}/${latitude},${longitude}`;
 	return function (dispatch) {
 		return axios.get(url)
 		.then(res => {
-			let action = retrieveWeatherSuccess(extractWaterbody(res.data));
+			let action = retrieveWeatherSuccess(res.data);
 			dispatch(action);
 		})
 		.catch(error => {
