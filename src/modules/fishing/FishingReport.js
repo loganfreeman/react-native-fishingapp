@@ -6,7 +6,8 @@ import {
 	Text,
 	ScrollView,
 	Alert,
-	TouchableOpacity
+	TouchableOpacity,
+	TouchableWithoutFeedback
 } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -18,19 +19,17 @@ import { iconsMap } from '../../utils/AppIcons';
 import { Card, List, ListItem, Button, CheckBox } from 'react-native-elements';
 import StarRating from 'react-native-star-rating';
 import Modal from 'react-native-modal';
+import { RadioButtons } from 'react-native-radio-buttons'
 
-const list = [
-  {
-    name: 'Amy Farha',
-    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-    subtitle: 'Vice President'
-  },
-  {
-    name: 'Chris Jackson',
-    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-    subtitle: 'Vice Chairman'
-  },
-]
+const options = [
+	"All",
+	"Hot",
+	"Good",
+	"Fair",
+	"Slow",
+	"Closed"
+];
+
 
 class FishingReport extends Component {
 
@@ -62,6 +61,8 @@ class FishingReport extends Component {
 		this._retrieveFishingReport();
 	}
 
+
+
 	_renderButton = (text, onPress) => (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.button}>
@@ -70,22 +71,109 @@ class FishingReport extends Component {
     </TouchableOpacity>
   );
 
+	_onStatusListItemPress(status) {
+		this.status = status;
+	}
+
   _renderModalContent = () => {
+
+		function renderOption( option, selected, onSelect, index) {
+
+      const textStyle = {
+        paddingTop: 10,
+        paddingBottom: 10,
+        color: 'black',
+        flex: 1,
+        fontSize: 14,
+      };
+      const baseStyle = {
+        flexDirection: 'row',
+      };
+      var style;
+      var checkMark;
+
+      if (index > 0) {
+        style = [baseStyle, {
+          borderTopColor: '#eeeeee',
+          borderTopWidth: 1,
+        }];
+      } else {
+        style = baseStyle;
+      }
+
+      if (selected) {
+        checkMark = <Text style={{
+          flex: 0.1,
+          color: '#007AFF',
+          fontWeight: 'bold',
+          paddingTop: 8,
+          fontSize: 20,
+          alignSelf: 'center',
+        }}>✓</Text>;
+      }
+
+      return (
+        <TouchableWithoutFeedback onPress={onSelect} key={index}>
+          <View style={style}>
+            <Text style={textStyle}>{option}</Text>
+            {checkMark}
+          </View>
+        </TouchableWithoutFeedback>
+      );
+    }
+
+		function renderContainer(options){
+      return (
+        <View style={{
+          backgroundColor: 'white',
+          paddingLeft: 20,
+          borderTopWidth: 1,
+          borderTopColor: '#cccccc',
+          borderBottomWidth: 1,
+          borderBottomColor: '#cccccc',
+        }}>
+          {options}
+        </View>
+      );
+    }
+
+		function setSelectedOption(selectedOption){
+      this.setState({
+        selectedOption
+      });
+    };
+
+		 function setStatus() {
+			 if(!this.state.selectedOption || this.state.selectedOption === 'All') {
+				 this.setState({
+	 				waterbodies: this.props.waterbodies,
+	 				visibleModal: null
+	 			});
+				return;
+			 }
+			let waterbodies = this.props.waterbodies.filter(item => {
+				return item.status === this.state.selectedOption;
+			});
+			this.setState({
+				waterbodies: waterbodies,
+				visibleModal: null
+			})
+		}
+
 		return (
 			<View style={styles.modalContent}>
-				<List containerStyle={{marginBottom: 20}}>
-				  {
-				    list.map((l, i) => (
-				      <ListItem
-				        roundAvatar
-				        avatar={{uri:l.avatar_url}}
-				        key={i}
-				        title={l.name}
-				      />
-				    ))
-				  }
-				</List>
-				{this._renderButton('Close', () => this.setState({ visibleModal: null }))}
+				<View style={{marginTop: 10, padding: 20, backgroundColor: 'white'}}>
+	        <Text style={{paddingBottom: 10, fontWeight:'bold'}}>Choose status</Text>
+	        <RadioButtons
+	          options={ options }
+	          onSelection={ setSelectedOption.bind(this) }
+	          selectedOption={this.state.selectedOption }
+	          renderOption={ renderOption }
+	          renderContainer={ renderContainer }
+	        />
+	        <Text>Selected option: {this.state.selectedOption || 'none'}</Text>
+	      </View>
+				{this._renderButton('Close', setStatus.bind(this))}
 			</View>
 		);
 	}
