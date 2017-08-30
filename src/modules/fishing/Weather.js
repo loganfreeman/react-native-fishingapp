@@ -7,7 +7,8 @@ import {
 	ScrollView,
 	Alert,
 	TouchableOpacity,
-	TouchableWithoutFeedback
+	TouchableWithoutFeedback,
+	Image
 } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -17,7 +18,7 @@ import ProgressBar from '../_global/ProgressBar';
 import styles from './styles/Weather';
 import { iconsMap } from '../../utils/AppIcons';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { Card, Button } from 'react-native-elements';
+import { Card, ListItem } from 'react-native-elements';
 
 
 class Weather extends Component {
@@ -54,14 +55,38 @@ class Weather extends Component {
 
 
   render() {
+
+		const icons = {
+      'partly-cloudy-day': require('../../img/weather-icons/partly-cloudy-day.png'),
+      'partly-cloudy-night': require('../../img/weather-icons/partly-cloudy-night.png'),
+      'clear-day': require('../../img/weather-icons/clear-day.png'),
+      'clear-night': require('../../img/weather-icons/clear-night.png'),
+      'rain': require('../../img/weather-icons/rain.png'),
+      'snow': require('../../img/weather-icons/snow.png'),
+      'sleet': require('../../img/weather-icons/sleet.png'),
+      'wind': require('../../img/weather-icons/wind.png'),
+      'fog': require('../../img/weather-icons/fog.png'),
+      'cloudy': require('../../img/weather-icons/cloudy.png'),
+      'hail': require('../../img/weather-icons/hail.png'),
+      'thunderstorm': require('../../img/weather-icons/thunderstorm.png'),
+      'tornado': require('../../img/weather-icons/tornado.png'),
+      'meteor-shower': require('../../img/weather-icons/meteor-shower.png'),
+      'default': require('../../img/weather-icons/default.png')
+    };
+
     const { water } = this.props;
+		const { currently } = this.props.weather;
 
     return (
 			this.state.isLoading ? <View style={styles.progressBar}><ProgressBar /></View> :
 			<ScrollView style={styles.container}>
 				<Card title={water.title}>
-					<Text>{water.latitude}</Text>
-					<Text>{water.longitude}</Text>
+					<View style={{flex: 1, flexDirection: 'row'}}>
+						<Text>{currently.summary}</Text>
+						{
+							<Image style={styles.icon} source={ icons[currently.icon] } />
+						}
+					</View>
 				</Card>
 			</ScrollView>
 
