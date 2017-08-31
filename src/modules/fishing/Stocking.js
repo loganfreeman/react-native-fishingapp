@@ -23,6 +23,15 @@ import openMap from 'react-native-open-maps';
 import Calendar from 'react-native-calendar';
 
 class Stocking extends Component {
+	static navigatorButtons = {
+    rightButtons: [
+      {
+        icon: require('../../img/find.png'), // for icon button, provide the local image asset name
+        id: 'search' // id for this button, given in onNavigatorEvent(event) to help understand which button was clicked
+      }
+    ]
+  };
+
   constructor(props) {
 		super(props);
 		this.state = {
@@ -42,6 +51,9 @@ class Stocking extends Component {
     if (event.type === 'NavBarButtonPress') {
       if (event.id === 'close') {
         this.props.navigator.dismissModal();
+      }
+			if (event.id == 'search') {
+
       }
     }
   }
