@@ -39,6 +39,25 @@ export default function (state = initialState.movies, action) {
 				...state,
 				searchResults: action.searchResults
 			};
+
+		case types.RETRIEVE_POPULAR_SHOWS_SUCCESS:
+			return {
+				...state,
+				popularShows: action.popularShows
+			};
+
+		case types.RETRIEVE_NOWPLAYING_SHOWS_SUCCESS:
+			return {
+				...state,
+				nowPlayingShows: action.nowPlayingShows
+			};
+
+		case types.RETRIEVE_SHOWS_LIST_SUCCESS:
+			return {
+				...state,
+				list: action.list
+			};
+
 		default:
 			return state;
 	}
