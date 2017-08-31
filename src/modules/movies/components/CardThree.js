@@ -33,9 +33,14 @@ class CardThree extends Component {
 								numberOfLines={3}>
 								{info.original_title}
 							</Text>
-							<View style={styles.cardGenre}>
-								<Text style={styles.cardGenreItem}>{info.release_date.substring(0, 4)}</Text>
-							</View>
+							{
+								info.hasOwnProperty('release_date') && (
+									<View style={styles.cardGenre}>
+										<Text style={styles.cardGenreItem}>{info.release_date.substring(0, 4)}</Text>
+									</View>
+								)
+							}
+
 							<View style={styles.cardNumbers}>
 								<View style={styles.cardStar}>
 									{iconStar}

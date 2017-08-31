@@ -112,8 +112,9 @@ export function retrieveMoviesListSuccess(res) {
 }
 
 export function retrieveMoviesList(type, page) {
+	let parts = type.split("/");
 	return function (dispatch) {
-		return axios.get(`${TMDB_URL}/movie/${type}?api_key=${TMDB_API_KEY}&page=${page}`)
+		return axios.get(`${TMDB_URL}/${parts[0]}/${parts[1]}?api_key=${TMDB_API_KEY}&page=${page}`)
 		.then(res => {
 			dispatch(retrieveMoviesListSuccess(res));
 		})

@@ -156,7 +156,7 @@ class Movies extends Component {
 						<TouchableOpacity>
 							<Text
 								style={styles.listHeadingRight}
-								onPress={this._viewMoviesList.bind(this, 'popular', 'Popular')}>
+								onPress={this._viewMoviesList.bind(this, 'movie/popular', 'Popular')}>
 								See all
 							</Text>
 						</TouchableOpacity>
@@ -172,7 +172,7 @@ class Movies extends Component {
 								{iconPlay}
 								<Text
 									style={styles.browseListItemText}
-									onPress={this._viewMoviesList.bind(this, 'now_playing', 'Now Playing')}>
+									onPress={this._viewMoviesList.bind(this, 'movie/now_playing', 'Now Playing')}>
 									Now Playing
 								</Text>
 							</View>
@@ -180,18 +180,8 @@ class Movies extends Component {
 						<TouchableOpacity activeOpacity={0.7}>
 							<View style={styles.browseListItem}>
 								{iconTop}
-								<Text style={styles.browseListItemText} onPress={this._viewMoviesList.bind(this, 'top_rated', 'Top Rated')}>
+								<Text style={styles.browseListItemText} onPress={this._viewMoviesList.bind(this, 'movie/top_rated', 'Top Rated')}>
 									Top Rated
-								</Text>
-							</View>
-						</TouchableOpacity>
-						<TouchableOpacity activeOpacity={0.7}>
-							<View style={styles.browseListItem}>
-								{iconPopular}
-								<Text
-									style={styles.browseListItemText}
-									onPress={this._viewMoviesList.bind(this, 'popular', 'Popular')}>
-									Popular
 								</Text>
 							</View>
 						</TouchableOpacity>
@@ -200,7 +190,7 @@ class Movies extends Component {
 								{iconUp}
 								<Text
 									style={styles.browseListItemText}
-									onPress={this._viewMoviesList.bind(this, 'upcoming', 'Upcoming')}>
+									onPress={this._viewMoviesList.bind(this, 'movei/upcoming', 'Upcoming')}>
 									Upcoming
 								</Text>
 							</View>

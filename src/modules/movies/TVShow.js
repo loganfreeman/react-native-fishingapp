@@ -156,7 +156,7 @@ class TVShow extends Component {
 						<TouchableOpacity>
 							<Text
 								style={styles.listHeadingRight}
-								onPress={this._viewShowsList.bind(this, 'popular', 'Popular')}>
+								onPress={this._viewShowsList.bind(this, 'tv/popular', 'Popular')}>
 								See all
 							</Text>
 						</TouchableOpacity>
@@ -172,26 +172,16 @@ class TVShow extends Component {
 								{iconPlay}
 								<Text
 									style={styles.browseListItemText}
-									onPress={this._viewShowsList.bind(this, 'now_playing', 'Now Playing')}>
-									Now Playing
+									onPress={this._viewShowsList.bind(this, 'tv/on_the_air', 'Now Playing')}>
+									On the air
 								</Text>
 							</View>
 						</TouchableOpacity>
 						<TouchableOpacity activeOpacity={0.7}>
 							<View style={styles.browseListItem}>
 								{iconTop}
-								<Text style={styles.browseListItemText} onPress={this._viewShowsList.bind(this, 'top_rated', 'Top Rated')}>
+								<Text style={styles.browseListItemText} onPress={this._viewShowsList.bind(this, 'tv/top_rated', 'Top Rated')}>
 									Top Rated
-								</Text>
-							</View>
-						</TouchableOpacity>
-						<TouchableOpacity activeOpacity={0.7}>
-							<View style={styles.browseListItem}>
-								{iconPopular}
-								<Text
-									style={styles.browseListItemText}
-									onPress={this._viewShowsList.bind(this, 'popular', 'Popular')}>
-									Popular
 								</Text>
 							</View>
 						</TouchableOpacity>
@@ -200,7 +190,7 @@ class TVShow extends Component {
 								{iconUp}
 								<Text
 									style={styles.browseListItemText}
-									onPress={this._viewShowsList.bind(this, 'upcoming', 'Upcoming')}>
+									onPress={this._viewShowsList.bind(this, 'tv/upcoming', 'Upcoming')}>
 									Upcoming
 								</Text>
 							</View>
