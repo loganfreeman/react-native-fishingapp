@@ -17,9 +17,14 @@ import * as fishingReportActions from './fishingreport.actions';
 import ProgressBar from '../_global/ProgressBar';
 import styles from './styles/Weather';
 import { iconsMap } from '../../utils/AppIcons';
+
+import { toLocaleTimeString } from '../../utils/Util';
+
+
 import Icon from 'react-native-vector-icons/Ionicons';
-import { Card } from 'react-native-elements';
+import { Card, List, ListItem } from 'react-native-elements';
 import CardWeather from './components/CardWeather';
+
 
 class Weather extends Component {
   constructor(props) {
@@ -75,7 +80,7 @@ class Weather extends Component {
     };
 
     const { water } = this.props;
-		const { currently, daily } = this.props.weather;
+		const { currently, hourly, daily, timezone } = this.props.weather;
 
     return (
 			this.state.isLoading ? <View style={styles.progressBar}><ProgressBar /></View> :
@@ -107,11 +112,29 @@ class Weather extends Component {
 					</View>
 				</Card>
 				<View style={styles.listHeading}>
+					<Text style={styles.listHeadingLeft}>Hourly weather forcast</Text>
+				</View>
+				<Card>
+				{
+					hourly.data.map((data, i) => {
+						return (
+							<View style={styles.listItem} key={i}>
+								<Text style={styles.listItemLeft}>{toLocaleTimeString(data.time)}</Text>
+								<View style={{flexDirection: 'row'}}>
+									<Image style={styles.icon} source={ icons[data.icon] } />
+									<Text>{data.temperature}</Text>
+								</View>
+							</View>
+						);
+					})
+				}
+				</Card>
+				<View style={styles.listHeading}>
 					<Text style={styles.listHeadingLeft}>Daily weather forcast</Text>
 				</View>
 				<ScrollView horizontal showsHorizontalScrollIndicator={false}>
 					{daily.data.map((data, i) => (
-						<CardWeather data={data} key={i} />
+						<CardWeather data={data} timezone={timezone} key={i} />
 					))}
 				</ScrollView>
 			</ScrollView>

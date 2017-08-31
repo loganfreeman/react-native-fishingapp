@@ -8,6 +8,7 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import LinearGradient from 'react-native-linear-gradient';
 import { Card, ListItem } from 'react-native-elements';
+import { toLocaleTimeString, toLocaleString } from '../../../utils/Util';
 
 
 import styles from './styles/CardWeather';
@@ -31,18 +32,7 @@ const icons = {
   'default': require('../../../img/weather-icons/default.png')
 };
 
-function toLocaleString(utcSeconds) {
-  let d = new Date(0); // The 0 there is the key, which sets the date to the epoch
-  d.setUTCSeconds(utcSeconds);
-  return d.toDateString();
-}
-
-function toLocaleTimeString(utcSeconds) {
-  let d = new Date(utcSeconds);
-  return d.toLocaleTimeString();
-}
-
-const CardWeather = ({ data }) => (
+const CardWeather = ({ data, timezone }) => (
 	<Card containerStyle={{padding: 0, width: 200, borderRadius: 3}} title={toLocaleString(data.time)}>
     <Image style={styles.icon} source={ icons[data.icon] } />
     <View style={styles.listItem}>
@@ -80,7 +70,8 @@ const CardWeather = ({ data }) => (
 );
 
 CardWeather.propTypes = {
-	data: PropTypes.object.isRequired
+	data: PropTypes.object.isRequired,
+	timezone: PropTypes.string.isRequired
 };
 
 export default CardWeather;

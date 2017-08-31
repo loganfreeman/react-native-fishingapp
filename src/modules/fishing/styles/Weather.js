@@ -40,6 +40,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 18
   },
+  listItemLeft: {
+    fontWeight: 'bold',
+    fontSize: 18
+  },
   listHeadingRight: {
     color: 'white',
     ...Platform.select({
