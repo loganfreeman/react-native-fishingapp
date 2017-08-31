@@ -62,7 +62,7 @@ class TVShow extends Component {
 		}
 		this.props.navigator.showModal({
 			title,
-			screen: 'movieapp.ShowsList',
+			screen: 'movieapp.MoviesList',
 			passProps: {
 				type
 			},
