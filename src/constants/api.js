@@ -11,3 +11,5 @@ export const darkSkyAPIKey = Config.darkSkyAPIKey;
 export const darkSkyAPIURL = Config.darkSkyAPIURL;
 
 export const FISHING_REPORT_URL = "https://wildlife.utah.gov/hotspots/";
+
+export const STOCKING_URL = "https://dwrapps.utah.gov/fishstocking/Fish";

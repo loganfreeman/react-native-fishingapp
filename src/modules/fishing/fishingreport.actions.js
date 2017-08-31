@@ -1,6 +1,6 @@
 import * as types from '../../constants/actionTypes';
-import { FISHING_REPORT_URL, darkSkyAPIURL, darkSkyAPIKey } from '../../constants/api';
-import { extractFishingReport, extractWaterbody } from './helper';
+import { FISHING_REPORT_URL, darkSkyAPIURL, darkSkyAPIKey, STOCKING_URL } from '../../constants/api';
+import { extractFishingReport, extractWaterbody, extractStocking } from './helper';
 import axios from 'axios';
 
 // GENRES
@@ -58,6 +58,27 @@ export function retrieveWeather(latitude, longitude) {
 		return axios.get(url)
 		.then(res => {
 			let action = retrieveWeatherSuccess(res.data);
+			dispatch(action);
+		})
+		.catch(error => {
+			console.log(error); //eslint-disable-line
+		});
+	};
+}
+
+
+export function retrieveStockingSuccess(stocking) {
+	return {
+		type: types.RETRIEVE_STOCKING_SUCCESS,
+		stocking: stocking
+	};
+}
+
+export function retrieveStocking() {
+	return function (dispatch) {
+		return axios.get(STOCKING_URL)
+		.then(res => {
+			let action = retrieveStockingSuccess(extractStocking(res.data));
 			dispatch(action);
 		})
 		.catch(error => {

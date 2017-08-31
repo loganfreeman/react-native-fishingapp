@@ -22,6 +22,12 @@ export default function (state = initialState.fishing, action) {
 				weather: action.weather
 			};
 
+		case types.RETRIEVE_STOCKING_SUCCESS:
+			return {
+				...state,
+				stocking: action.stocking
+			}
+
 		default:
 			return state;
 	}

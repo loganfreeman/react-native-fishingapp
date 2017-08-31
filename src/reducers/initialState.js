@@ -10,6 +10,7 @@ export default {
 	fishing: {
 		waterbodies: [],
 		detail: {},
-		weather: {}
+		weather: {},
+		stocking: []
 	}
 };

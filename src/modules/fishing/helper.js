@@ -52,6 +52,24 @@ function getWaterBody(text,waterbodies = []) {
   return waterbodies;
 }
 
+export function extractStocking(html) {
+  let $ = cheerio.load(html);
+  let items = [];
+  $('#fishTable tbody tr').each((index, element) => {
+    let item = {};
+
+    $(element).children('td').each((index, child) => {
+      let td = $(child);
+      let key = td.attr('class');
+      item[key] = td.text();
+    });
+
+    items.push(item);
+  });
+
+  return items;
+}
+
 export function extractFishingReport(html) {
   let $ = cheerio.load(html);
   let waterbodies = [];
