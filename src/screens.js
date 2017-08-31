@@ -15,7 +15,7 @@ import Stocking from './modules/fishing/Stocking';
 export function registerScreens(store, Provider) {
 	Navigation.registerComponent('movieapp.Movie', () => Movie, store, Provider);
 	Navigation.registerComponent('movieapp.Movies', () => Movies, store, Provider);
-	Navigation.registerComponent('movieapp.TVShow', () => TVShow, store, Provider);
+	Navigation.registerComponent('movieapp.Shows', () => TVShow, store, Provider);
 	Navigation.registerComponent('movieapp.MoviesList', () => MoviesList, store, Provider);
 	Navigation.registerComponent('movieapp.Search', () => Search, store, Provider);
 	Navigation.registerComponent('movieapp.Drawer', () => Drawer);
