@@ -20,6 +20,7 @@ class Drawer extends Component {
 		this._gotoRun = this._gotoRun.bind(this);
 		this._gotoFishing = this._gotoFishing.bind(this);
 		this._goToStocking = this._goToStocking.bind(this);
+		this._goToShows = this._goToShows.bind(this);
 	}
 
 	_openSearch() {
@@ -37,6 +38,16 @@ class Drawer extends Component {
 			title: 'Movies',
 			animated: true, // does the resetTo have transition animation or does it happen immediately (optional)
   		animationType: 'fade'
+		});
+	}
+
+	_goToShows() {
+		this._toggleDrawer();
+		this.props.navigator.showModal({
+			screen: 'movieapp.Shows',
+			title: 'TV Shows',
+			animated: true, // does the resetTo have transition animation or does it happen immediately (optional)
+			animationType: 'fade'
 		});
 	}
 
@@ -125,7 +136,7 @@ class Drawer extends Component {
 						</TouchableOpacity>
 						<View style={styles.drawerListItem}>
 							{iconTV}
-							<Text style={styles.drawerListItemText} onPress={() => ToastAndroid.show('Coming Soon!', ToastAndroid.SHORT)}>
+							<Text style={styles.drawerListItemText} onPress={this._goToShows}>
 								TV Shows
 							</Text>
 						</View>
