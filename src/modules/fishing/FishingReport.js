@@ -290,7 +290,7 @@ class FishingReport extends Component {
 		const iconStar = <Icon name="md-star" size={16} color="#F5B642" />;
 		return (
 			this.state.isLoading ? <View style={styles.progressBar}><ProgressBar /></View> :
-			<View>
+			<View style={styles.container}>
 				<Modal isVisible={this.state.visibleModal === 1}>
 					{this._renderModalContent()}
 				</Modal>

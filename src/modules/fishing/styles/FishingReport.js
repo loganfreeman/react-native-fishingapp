@@ -2,10 +2,13 @@ import { Platform, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+		backgroundColor: 'black',
+		...Platform.select({
+			ios: {
+				paddingTop: 64
+			}
+		})
+	},
   button: {
     backgroundColor: 'lightblue',
     padding: 12,

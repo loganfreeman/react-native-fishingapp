@@ -17,6 +17,21 @@ const styles = StyleSheet.create({
 		alignItems: 'center'
 	},
 
+  listItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+
+  listHeading: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  listHeadingLeft: {
+    fontWeight: 'bold',
+  },
+
 });
 
 export default styles;

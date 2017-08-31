@@ -91,9 +91,16 @@ class WaterBody extends Component {
       this.state.isLoading ? <View style={styles.progressBar}><ProgressBar /></View> :
 			<ScrollView style={styles.container}>
 				<Card title={water.title}>
-						<Text>{detail.summary}</Text>
-
-						<Text>{detail.details}</Text>
+						<View style={styles.listHeading}>
+							<Text style={styles.listHeadingLeft}>{detail.summary}</Text>
+						</View>
+						{
+							detail.details.split('\n').map((line, i) => (
+								<View style={styles.listHeading} key={i}>
+									<Text style={styles.listHeadingLeft}>{line.trim()}</Text>
+								</View>
+							))
+						}
 
 						<View style={{flex: 1, flexDirection: 'row'}}>
 							<Button
