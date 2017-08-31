@@ -25,7 +25,7 @@ class Drawer extends Component {
 		this._toggleDrawer();
 		this.props.navigator.showModal({
 			screen: 'movieapp.Search',
-			title: 'Search'
+			title: 'Search Movies'
 		});
 	}
 
@@ -75,7 +75,7 @@ class Drawer extends Component {
 							<View style={styles.drawerListItem}>
 								{iconSearch}
 								<Text style={styles.drawerListItemText}>
-									Search
+									Search Movies
 								</Text>
 							</View>
 						</TouchableOpacity>
