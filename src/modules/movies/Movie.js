@@ -60,7 +60,7 @@ class Movie extends Component {
 	}
 
 	_retrieveDetails(isRefreshed) {
-		this.props.actions.retrieveMovieDetails(this.props.movieId)
+		this.props.actions.retrieveMovieDetails(this.props.type, this.props.movieId)
 			.then(() => {
 				this._retrieveYoutubeDetails();
 			});
@@ -126,7 +126,8 @@ class Movie extends Component {
 		this.props.navigator.push({
 			screen: 'movieapp.Movie',
 			passProps: {
-				movieId
+				movieId,
+				type: this.props.type
 			}
 		});
 	}
@@ -250,7 +251,8 @@ Movie.propTypes = {
 	actions: PropTypes.object.isRequired,
 	details: PropTypes.object.isRequired,
 	navigator: PropTypes.object,
-	movieId: PropTypes.number.isRequired
+	movieId: PropTypes.number.isRequired,
+	type: PropTypes.string.isRequired
 };
 
 function mapStateToProps(state, ownProps) {

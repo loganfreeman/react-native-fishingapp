@@ -86,7 +86,8 @@ class MoviesList extends Component {
 		this.props.navigator.showModal({
 			screen: 'movieapp.Movie',
 			passProps: {
-				movieId
+				movieId,
+				type: this.props.type.split('/')[0]
 			},
 			backButtonHidden: true,
 			navigatorButtons: {

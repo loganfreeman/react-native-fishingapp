@@ -86,7 +86,8 @@ class Search extends Component {
 		this.props.navigator.push({
 			screen: 'movieapp.Movie',
 			passProps: {
-				movieId
+				movieId,
+				type: 'movie'
 			},
 			backButtonHidden: true,
 			navigatorButtons: {

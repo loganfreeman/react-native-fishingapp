@@ -76,7 +76,8 @@ class TVShow extends Component {
 		this.props.navigator.showModal({
 			screen: 'movieapp.Movie',
 			passProps: {
-				movieId
+				movieId,
+				type: 'tv'
 			},
 			backButtonHidden: true,
 			navigatorButtons: {

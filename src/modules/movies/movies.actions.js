@@ -172,9 +172,9 @@ export function retrieveMovieDetailsSuccess(res) {
 	};
 }
 
-export function retrieveMovieDetails(movieId) {
+export function retrieveMovieDetails(type, movieId) {
 	return function (dispatch) {
-		return axios.get(`${TMDB_URL}/movie/${movieId}?api_key=${TMDB_API_KEY}&append_to_response=casts,images,videos`)
+		return axios.get(`${TMDB_URL}/${type}/${movieId}?api_key=${TMDB_API_KEY}&append_to_response=casts,images,videos`)
 		.then(res => {
 			dispatch(retrieveMovieDetailsSuccess(res));
 		})
