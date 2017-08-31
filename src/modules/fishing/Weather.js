@@ -18,8 +18,8 @@ import ProgressBar from '../_global/ProgressBar';
 import styles from './styles/Weather';
 import { iconsMap } from '../../utils/AppIcons';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { Card, ListItem } from 'react-native-elements';
-
+import { Card } from 'react-native-elements';
+import CardWeather from './components/CardWeather';
 
 class Weather extends Component {
   constructor(props) {
@@ -75,19 +75,45 @@ class Weather extends Component {
     };
 
     const { water } = this.props;
-		const { currently } = this.props.weather;
+		const { currently, daily } = this.props.weather;
 
     return (
 			this.state.isLoading ? <View style={styles.progressBar}><ProgressBar /></View> :
 			<ScrollView style={styles.container}>
 				<Card title={water.title}>
-					<View style={{flex: 1, flexDirection: 'row'}}>
+					<View style={styles.listItem}>
 						<Text>{currently.summary}</Text>
 						{
 							<Image style={styles.icon} source={ icons[currently.icon] } />
 						}
 					</View>
+					<View style={styles.listItem}>
+						<Text>Wind Speed: </Text><Text>{currently.windSpeed}</Text>
+					</View>
+					<View style={styles.listItem}>
+						<Text>Humidity: </Text><Text>{currently.humidity}</Text>
+					</View>
+					<View style={styles.listItem}>
+						<Text>Pressure: </Text><Text>{currently.pressure}</Text>
+					</View>
+					<View style={styles.listItem}>
+						<Text>Ozone: </Text><Text>{currently.ozone}</Text>
+					</View>
+					<View style={styles.listItem}>
+						<Text>Temperature: </Text><Text>{currently.temperature}</Text>
+					</View>
+					<View style={styles.listItem}>
+						<Text>PrecipProbability: </Text><Text>{currently.precipProbability}</Text>
+					</View>
 				</Card>
+				<View style={styles.listHeading}>
+					<Text style={styles.listHeadingLeft}>Daily weather forcast</Text>
+				</View>
+				<ScrollView horizontal showsHorizontalScrollIndicator={false}>
+					{daily.data.map((data, i) => (
+						<CardWeather data={data} key={i} />
+					))}
+				</ScrollView>
 			</ScrollView>
 
     );
