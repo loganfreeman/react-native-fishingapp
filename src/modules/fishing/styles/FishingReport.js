@@ -2,6 +2,8 @@ import { Platform, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    flexDirection: 'column',
 		backgroundColor: 'black',
 		...Platform.select({
 			ios: {

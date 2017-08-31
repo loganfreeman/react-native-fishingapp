@@ -121,8 +121,8 @@ class FishingReport extends Component {
 					  onChangeText={onChangeText.bind(this)}
 					  placeholder='Type Here...' />
 	      </View>
-				{this._renderButton('Clear Search Results', clear.bind(this))}
-				{this._renderButton('Close', search.bind(this))}
+				{this._renderButton('Reset', clear.bind(this))}
+				{this._renderButton('Search', search.bind(this))}
 			</View>
 		);
 	};
@@ -225,7 +225,7 @@ class FishingReport extends Component {
 	        />
 	        <Text>Selected option: {this.state.selectedOption || 'none'}</Text>
 	      </View>
-				{this._renderButton('Close', setStatus.bind(this))}
+				{this._renderButton('Confirm', setStatus.bind(this))}
 			</View>
 		);
 	}
