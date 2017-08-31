@@ -91,7 +91,7 @@ class Drawer extends Component {
 							<View style={styles.drawerListItem}>
 								{iconRun}
 								<Text style={styles.drawerListItemText}>
-									Run
+									All Trails
 								</Text>
 							</View>
 						</TouchableOpacity>
