@@ -28,6 +28,10 @@ class Stocking extends Component {
       {
         icon: require('../../img/find.png'), // for icon button, provide the local image asset name
         id: 'search' // id for this button, given in onNavigatorEvent(event) to help understand which button was clicked
+      },
+			{
+        icon: require('../../img/calendar.png'), // for icon button, provide the local image asset name
+        id: 'calendar' // id for this button, given in onNavigatorEvent(event) to help understand which button was clicked
       }
     ]
   };
@@ -53,6 +57,9 @@ class Stocking extends Component {
         this.props.navigator.dismissModal();
       }
 			if (event.id == 'search') {
+
+      }
+			if (event.id == 'calendar') {
 
       }
     }
