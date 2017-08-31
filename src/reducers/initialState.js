@@ -5,6 +5,8 @@ export default {
 		list: {},
 		nowPlayingMovies: {},
 		popularMovies: {},
+		nowPlayingShows: {},
+		popularShows: {},
 		searchResults: {}
 	},
 	fishing: {

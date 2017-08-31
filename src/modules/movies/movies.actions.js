@@ -42,6 +42,26 @@ export function retrievePopularMovies(page) {
 	};
 }
 
+// POPULAR
+export function retrievePopularShowsSuccess(res) {
+	return {
+		type: types.RETRIEVE_POPULAR_SHOWS_SUCCESS,
+		popularShows: res.data
+	};
+}
+
+export function retrievePopularShows(page) {
+	return function (dispatch) {
+		return axios.get(`${TMDB_URL}/tv/popular?api_key=${TMDB_API_KEY}&page=${page}`)
+		.then(res => {
+			dispatch(retrievePopularShowsSuccess(res));
+		})
+		.catch(error => {
+			console.log('Popular', error); //eslint-disable-line
+		});
+	};
+}
+
 // NOW PLAYING
 export function retrieveNowPlayingMoviesSuccess(res) {
 	return {
@@ -62,6 +82,27 @@ export function retrieveNowPlayingMovies(page) {
 	};
 }
 
+
+// NOW PLAYING
+export function retrieveNowPlayingShowsSuccess(res) {
+	return {
+		type: types.RETRIEVE_NOWPLAYING_SHOWS_SUCCESS,
+		nowPlayingShows: res.data
+	};
+}
+
+export function retrieveNowPlayingShows(page) {
+	return function (dispatch) {
+		return axios.get(`${TMDB_URL}/tv/airing_today?api_key=${TMDB_API_KEY}&page=${page}`)
+		.then(res => {
+			dispatch(retrieveNowPlayingShowsSuccess(res));
+		})
+		.catch(error => {
+			console.log('Now Playing', error); //eslint-disable-line
+		});
+	};
+}
+
 // MOVIES LIST
 export function retrieveMoviesListSuccess(res) {
 	return {
@@ -75,6 +116,26 @@ export function retrieveMoviesList(type, page) {
 		return axios.get(`${TMDB_URL}/movie/${type}?api_key=${TMDB_API_KEY}&page=${page}`)
 		.then(res => {
 			dispatch(retrieveMoviesListSuccess(res));
+		})
+		.catch(error => {
+			console.log('Movies List', error); //eslint-disable-line
+		});
+	};
+}
+
+// MOVIES LIST
+export function retrieveShowsListSuccess(res) {
+	return {
+		type: types.RETRIEVE_SHOWS_LIST_SUCCESS,
+		list: res.data
+	};
+}
+
+export function retrieveShowsList(type, page) {
+	return function (dispatch) {
+		return axios.get(`${TMDB_URL}/tv/${type}?api_key=${TMDB_API_KEY}&page=${page}`)
+		.then(res => {
+			dispatch(retrieveShowsListSuccess(res));
 		})
 		.catch(error => {
 			console.log('Movies List', error); //eslint-disable-line
