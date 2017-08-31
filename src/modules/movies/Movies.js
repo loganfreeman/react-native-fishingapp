@@ -191,7 +191,7 @@ class Movies extends Component {
 								{iconUp}
 								<Text
 									style={styles.browseListItemText}
-									onPress={this._viewMoviesList.bind(this, 'movei/upcoming', 'Upcoming')}>
+									onPress={this._viewMoviesList.bind(this, 'movie/upcoming', 'Upcoming')}>
 									Upcoming
 								</Text>
 							</View>
