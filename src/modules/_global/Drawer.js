@@ -15,12 +15,9 @@ class Drawer extends Component {
 	constructor(props) {
 		super(props);
 
-		this._goToMovies = this._goToMovies.bind(this);
-		this._openSearch = this._openSearch.bind(this);
 		this._gotoRun = this._gotoRun.bind(this);
 		this._gotoFishing = this._gotoFishing.bind(this);
 		this._goToStocking = this._goToStocking.bind(this);
-		this._goToShows = this._goToShows.bind(this);
 	}
 
 	_openSearch() {
@@ -28,26 +25,6 @@ class Drawer extends Component {
 		this.props.navigator.showModal({
 			screen: 'movieapp.Search',
 			title: 'Search Movies'
-		});
-	}
-
-	_goToMovies() {
-		this._toggleDrawer();
-		this.props.navigator.showModal({
-			screen: 'movieapp.Movies',
-			title: 'Movies',
-			animated: true, // does the resetTo have transition animation or does it happen immediately (optional)
-  		animationType: 'fade'
-		});
-	}
-
-	_goToShows() {
-		this._toggleDrawer();
-		this.props.navigator.showModal({
-			screen: 'movieapp.Shows',
-			title: 'TV Shows',
-			animated: true, // does the resetTo have transition animation or does it happen immediately (optional)
-			animationType: 'fade'
 		});
 	}
 
@@ -94,22 +71,6 @@ class Drawer extends Component {
 			<LinearGradient colors={['rgba(0, 0, 0, 0.7)', 'rgba(0,0,0, 0.9)', 'rgba(0,0,0, 1)']} style={styles.linearGradient}>
 				<View style={styles.container}>
 					<View style={styles.drawerList}>
-						<TouchableOpacity onPress={this._openSearch}>
-							<View style={styles.drawerListItem}>
-								{iconSearch}
-								<Text style={styles.drawerListItemText}>
-									Search Movies
-								</Text>
-							</View>
-						</TouchableOpacity>
-						<TouchableOpacity onPress={this._goToMovies}>
-							<View style={styles.drawerListItem}>
-								{iconMovies}
-								<Text style={styles.drawerListItemText}>
-									Movies
-								</Text>
-							</View>
-						</TouchableOpacity>
 						<TouchableOpacity onPress={() => ToastAndroid.show('Coming Soon!', ToastAndroid.SHORT)}>
 							<View style={styles.drawerListItem}>
 								{iconRun}
@@ -134,12 +95,6 @@ class Drawer extends Component {
 								</Text>
 							</View>
 						</TouchableOpacity>
-						<View style={styles.drawerListItem}>
-							{iconTV}
-							<Text style={styles.drawerListItemText} onPress={this._goToShows}>
-								TV Shows
-							</Text>
-						</View>
 					</View>
 					<Text style={styles._version}>
 						{/* 'v1.0.0' */}
