@@ -20,6 +20,7 @@ import * as moviesActions from './movies.actions';
 import Casts from './tabs/Casts';
 import DefaultTabBar from '../_global/scrollableTabView/DefaultTabBar';
 import Info from './tabs/Info';
+import ShowInfo from './tabs/ShowInfo';
 import ProgressBar from '../_global/ProgressBar';
 import Trailers from './tabs/Trailers';
 import styles from './styles/Movie';
@@ -233,6 +234,11 @@ class Movie extends Component {
 							{
 								this.props.type === 'movie' && (
 									<Info tabLabel="INFO" info={info} />
+								)
+							}
+							{
+								this.props.type === 'tv' && (
+									<ShowInfo tabLabel="INFO" info={info} />
 								)
 							}
 							<Trailers tabLabel="TRAILERS" youtubeVideos={this.state.youtubeVideos} openYoutube={this._openYoutube} getTabHeight={this._getTabHeight} />
