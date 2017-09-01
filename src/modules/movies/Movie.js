@@ -114,9 +114,6 @@ class Movie extends Component {
 								.then(res => {
 									const data = this.state.youtubeVideos;
 									data.push(res.data.items[0]);
-								})
-								.catch(error => {
-									console.log(error); //eslint-disable-line
 								});
 			return request;
 		});
@@ -218,19 +215,23 @@ class Movie extends Component {
 						</View>
 					</View>
 					<View style={styles.contentContainer}>
-						<ScrollableTabView
-							onChangeTab={this._onChangeTab}
-							renderTabBar={() => (
-								<DefaultTabBar
-									textStyle={styles.textStyle}
-									underlineStyle={styles.underlineStyle}
-									style={styles.tabBar}
-								/>
-							)}>
-							<Info tabLabel="INFO" info={info} />
-							<Casts tabLabel="CASTS" info={info} getTabHeight={this._getTabHeight} />
-							<Trailers tabLabel="TRAILERS" youtubeVideos={this.state.youtubeVideos} openYoutube={this._openYoutube} getTabHeight={this._getTabHeight} />
-						</ScrollableTabView>
+						{
+							this.props.type === 'movie' && (
+								<ScrollableTabView
+									onChangeTab={this._onChangeTab}
+									renderTabBar={() => (
+										<DefaultTabBar
+											textStyle={styles.textStyle}
+											underlineStyle={styles.underlineStyle}
+											style={styles.tabBar}
+										/>
+									)}>
+									<Casts tabLabel="CASTS" info={info} getTabHeight={this._getTabHeight} />
+									<Info tabLabel="INFO" info={info} />
+									<Trailers tabLabel="TRAILERS" youtubeVideos={this.state.youtubeVideos} openYoutube={this._openYoutube} getTabHeight={this._getTabHeight} />
+								</ScrollableTabView>
+							)
+						}
 					</View>
 				</View>
 			</ScrollView>

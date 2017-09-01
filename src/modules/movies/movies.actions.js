@@ -177,9 +177,6 @@ export function retrieveMovieDetails(type, movieId) {
 		return axios.get(`${TMDB_URL}/${type}/${movieId}?api_key=${TMDB_API_KEY}&append_to_response=casts,images,videos`)
 		.then(res => {
 			dispatch(retrieveMovieDetailsSuccess(res));
-		})
-		.catch(error => {
-			console.log('Movie Details', error); //eslint-disable-line
 		});
 	};
 }
