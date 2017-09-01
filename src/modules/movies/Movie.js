@@ -215,23 +215,28 @@ class Movie extends Component {
 						</View>
 					</View>
 					<View style={styles.contentContainer}>
-						{
-							this.props.type === 'movie' && (
-								<ScrollableTabView
-									onChangeTab={this._onChangeTab}
-									renderTabBar={() => (
-										<DefaultTabBar
-											textStyle={styles.textStyle}
-											underlineStyle={styles.underlineStyle}
-											style={styles.tabBar}
-										/>
-									)}>
+
+						<ScrollableTabView
+							onChangeTab={this._onChangeTab}
+							renderTabBar={() => (
+								<DefaultTabBar
+									textStyle={styles.textStyle}
+									underlineStyle={styles.underlineStyle}
+									style={styles.tabBar}
+								/>
+							)}>
+							{
+								this.props.type === 'movie' && (
 									<Casts tabLabel="CASTS" info={info} getTabHeight={this._getTabHeight} />
+								)
+							}
+							{
+								this.props.type === 'movie' && (
 									<Info tabLabel="INFO" info={info} />
-									<Trailers tabLabel="TRAILERS" youtubeVideos={this.state.youtubeVideos} openYoutube={this._openYoutube} getTabHeight={this._getTabHeight} />
-								</ScrollableTabView>
-							)
-						}
+								)
+							}
+							<Trailers tabLabel="TRAILERS" youtubeVideos={this.state.youtubeVideos} openYoutube={this._openYoutube} getTabHeight={this._getTabHeight} />
+						</ScrollableTabView>
 					</View>
 				</View>
 			</ScrollView>
