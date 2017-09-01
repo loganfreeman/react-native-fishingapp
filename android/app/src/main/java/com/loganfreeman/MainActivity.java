@@ -1,4 +1,4 @@
-package com.movieapp;
+package com.loganfreeman;
 
 // import com.facebook.react.ReactActivity;
 import com.reactnativenavigation.controllers.SplashActivity;
