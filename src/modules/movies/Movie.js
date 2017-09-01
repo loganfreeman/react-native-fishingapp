@@ -257,8 +257,7 @@ Movie.propTypes = {
 
 function mapStateToProps(state, ownProps) {
 	return {
-		details: state.movies.details,
-		similarMovies: state.movies.similarMovies
+		details: state.movies.details
 	};
 }
 
