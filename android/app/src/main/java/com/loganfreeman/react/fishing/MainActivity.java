@@ -1,4 +1,4 @@
-package com.loganfreeman;
+package com.loganfreeman.react.fishing;
 
 // import com.facebook.react.ReactActivity;
 import com.reactnativenavigation.controllers.SplashActivity;

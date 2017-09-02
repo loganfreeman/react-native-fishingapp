@@ -1,7 +1,8 @@
-package com.loganfreeman;
+package com.loganfreeman.react.fishing;
 
 import android.support.annotation.NonNull;
 
+import com.loganfreeman.react.fishing.BuildConfig;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactPackage;
 import com.reactnativenavigation.NavigationApplication;

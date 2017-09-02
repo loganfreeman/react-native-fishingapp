@@ -88,7 +88,7 @@ android {
     buildToolsVersion "25.0.1"
 
     defaultConfig {
-        applicationId "com.loganfreeman"
+        applicationId "com.loganfreeman.react.fishing"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 2
